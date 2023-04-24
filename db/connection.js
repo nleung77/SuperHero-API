@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const MONGODB_URI =
-  process.env.MONGO_URL || "mongodb://localhost:27017/superheroes";
+  process.env.DB_URL || "mongodb://localhost:27017/superheroes";
 
 const mongooseConfig = {
   useNewUrlParser: true,
@@ -15,4 +15,7 @@ function connect() {
     .catch((err) => console.log(err));
 }
 
-module.exports = { connect };
+mongoose.connection.on("disconnected", () => console.log("Disconnected"));
+mongoose.connection.on("error", (error) => console.error(`${error}`));
+
+export default mongoose.connection;
