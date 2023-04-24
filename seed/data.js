@@ -57,13 +57,13 @@ const seedDatabase = async () => {
   //   }
   // });
 
-  fs.writeFile("villains.json", JSON.stringify(villains), (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("yee");
-    }
-  });
+  // fs.writeFile("villains.json", JSON.stringify(villains), (err) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log("yee");
+  //   }
+  // });
 
   mongoose.connection.close();
 };
