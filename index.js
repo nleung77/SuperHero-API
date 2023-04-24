@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 app.use("/api/heroes", heroesRouter);
 app.use("/api/villains", villainsRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is listening on port ${PORT}`);
+// });
+
+let server = app.listen(process.env.PORT);
