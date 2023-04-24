@@ -1,19 +1,54 @@
+const axios = require("axios");
 const mongoose = require("mongoose");
 const Hero = require("../models/hero");
-const data = require("./data");
+const Villain = require("../models/villian");
 
-mongoose
-  .connect("mongodb://localhost/superheroes", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("MongoDB connected");
-    Hero.insertMany(data)
-      .then(() => {
-        console.log("Data seeded");
-        mongoose.connection.close();
-      })
-      .catch((err) => console.log(err));
-  })
-  .catch((err) => console.log(err));
+const apiUrl = "https://superheroapi.com/api/10200089863473321";
+
+mongoose.connect("mongodb://localhost/superheroes", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const getData = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const seedDatabase = async () => {
+  const heroData = await getData(`${apiUrl}/search/a`);
+  const villainData = await getData(`${apiUrl}/search/b`);
+
+  const heroes = heroData.results.map((result) => ({
+    name: result.name,
+    image: result.image.url,
+    biography: result.biography,
+    appearance: result.appearance,
+    powerstats: result.powerstats,
+  }));
+
+  const villains = villainData.results.map((result) => ({
+    name: result.name,
+    image: result.image.url,
+    biography: result.biography,
+    appearance: result.appearance,
+    powerstats: result.powerstats,
+  }));
+
+  try {
+    await Hero.insertMany(heroes);
+    console.log("Heroes seeded");
+    await Villain.insertMany(villains);
+    console.log("Villains seeded");
+  } catch (error) {
+    console.error(error);
+  }
+
+  mongoose.connection.close();
+};
+
+seedDatabase();
