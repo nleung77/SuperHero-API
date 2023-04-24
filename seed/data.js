@@ -2,6 +2,7 @@ const axios = require("axios");
 const mongoose = require("mongoose");
 const Hero = require("../models/hero");
 const Villain = require("../models/villian");
+const fs = require("fs");
 
 const apiUrl = "https://superheroapi.com/api/10200089863473321";
 
@@ -47,6 +48,22 @@ const seedDatabase = async () => {
   } catch (error) {
     console.error(error);
   }
+
+  // fs.writeFile("heroes.json", JSON.stringify(heroes), (err) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log("yee");
+  //   }
+  // });
+
+  fs.writeFile("villains.json", JSON.stringify(villains), (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("yee");
+    }
+  });
 
   mongoose.connection.close();
 };
