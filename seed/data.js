@@ -26,6 +26,8 @@ const seedDatabase = async () => {
   const heroData = await getData(`${apiUrl}/search/a`);
   const villainData = await getData(`${apiUrl}/search/b`);
 
+  console.log("hero Data: ", heroData.results[0]);
+
   const heroes = heroData.results.map((result) => ({
     name: result.name,
     image: result.image.url,
