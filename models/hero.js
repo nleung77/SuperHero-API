@@ -11,34 +11,28 @@ const heroSchema = new mongoose.Schema({
     combat: String,
   },
   biography: {
-    full_name: String,
-    alter_egos: String,
+    "full-name": String,
+    "alter-egos": String,
     aliases: [String],
-    place_of_birth: String,
-    first_appearance: String,
+    "place-of-birth": String,
+    "first-appearance": String,
     publisher: String,
     alignment: String,
   },
   appearance: {
     gender: String,
     race: String,
-    height: {
-      ft: String,
-      cm: String,
-    },
-    weight: {
-      lb: String,
-      kg: String,
-    },
-    eye_color: String,
-    hair_color: String,
+    height: [String],
+    weight: [String],
+    "eye-color": String,
+    "hair-color": String,
   },
   work: {
     occupation: String,
     base: String,
   },
   connections: {
-    group_affiliation: String,
+    "group-affiliation": String,
     relatives: String,
   },
   image: {

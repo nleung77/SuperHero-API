@@ -26,15 +26,18 @@ const seedDatabase = async () => {
   const heroData = await getData(`${apiUrl}/search/a`);
   const villainData = await getData(`${apiUrl}/search/b`);
 
-  console.log("hero Data: ", heroData.results[0]);
+  console.log("villain Data: ", villainData.results[0]);
 
-  const heroes = heroData.results.map((result) => ({
-    name: result.name,
-    image: result.image.url,
-    biography: result.biography,
-    appearance: result.appearance,
-    powerstats: result.powerstats,
-  }));
+  const heroes = heroData.results.map((result) => {
+    console.log(result);
+    return {
+      name: result.name,
+      image: result.image.url,
+      biography: result.biography,
+      appearance: result.appearance,
+      powerstats: result.powerstats,
+    };
+  });
 
   const villains = villainData.results.map((result) => ({
     name: result.name,
@@ -45,8 +48,10 @@ const seedDatabase = async () => {
   }));
 
   try {
+    await Hero.deleteMany({});
     await Hero.insertMany(heroes);
     console.log("Heroes seeded");
+    await Villain.deleteMany({});
     await Villain.insertMany(villains);
     console.log("Villains seeded");
   } catch (error) {
