@@ -1,7 +1,7 @@
-const Villain = require("../models/villain.model");
+const Villain = require("../models/villain");
 
 // Create a new villain
-exports.createVillain = async (req, res) => {
+async function createVillain(req, res){
   try {
     const villain = new Villain(req.body);
     await villain.save();
@@ -16,7 +16,7 @@ exports.createVillain = async (req, res) => {
 };
 
 // Get all villains
-exports.getVillains = async (req, res) => {
+async function getAllVillains(req, res){
   try {
     const villains = await Villain.find();
     res.status(200).json({ data: villains });
@@ -28,7 +28,7 @@ exports.getVillains = async (req, res) => {
 };
 
 // Get a single villain
-exports.getVillain = async (req, res) => {
+async function getVillain(req, res){
   try {
     const villain = await Villain.findById(req.params.id);
     if (!villain) {
@@ -43,7 +43,7 @@ exports.getVillain = async (req, res) => {
 };
 
 // Update a villain
-exports.updateVillain = async (req, res) => {
+async function updateVillain(req, res){
   try {
     const villain = await Villain.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -59,7 +59,7 @@ exports.updateVillain = async (req, res) => {
 };
 
 // Delete a villain
-exports.deleteVillain = async (req, res) => {
+async function deleteVillain(req, res){
   try {
     const villain = await Villain.findByIdAndDelete(req.params.id);
     res
@@ -73,9 +73,9 @@ exports.deleteVillain = async (req, res) => {
 };
 
 module.exports = {
-  getVillains,
-  getVillainById,
-  addVillain,
+  getAllVillains,
+  getVillain,
+  createVillain,
   updateVillain,
   deleteVillain,
 };

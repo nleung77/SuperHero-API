@@ -12,6 +12,4 @@ const villainSchema = new mongoose.Schema({
   image: String,
 });
 
-//const Villn = mongoose.model("Villain", villainSchema);
-
 module.exports = mongoose.model("Villain", villainSchema);

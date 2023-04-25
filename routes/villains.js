@@ -1,7 +1,8 @@
 const express = require("express");
+
 const {
   getAllVillains,
-  getVillainById,
+  getVillain,
   createVillain,
   updateVillain,
   deleteVillain,
@@ -10,9 +11,10 @@ const {
 const router = express.Router();
 
 router.get("/", getAllVillains);
-router.get("/:id", getVillainById);
+router.get("/:id", getVillain);
 router.post("/", createVillain);
 router.put("/:id", updateVillain);
 router.delete("/:id", deleteVillain);
 
 module.exports = router;
+
