@@ -8,8 +8,6 @@ const villainsRouter = require("./routes/villains");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-db.connect();
-
 app.use(bodyParser.json());
 
 app.use("/api/heroes", heroesRouter);
@@ -19,4 +17,3 @@ app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
 
-// let server = app.listen(process.env.PORT);

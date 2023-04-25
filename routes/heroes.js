@@ -1,7 +1,7 @@
 const express = require('express');
 const {
   getAllHeroes,
-  getHeroById,
+  getHero,
   createHero,
   updateHero,
   deleteHero
@@ -10,7 +10,7 @@ const {
 const router = express.Router();
 
 router.get('/', getAllHeroes);
-router.get('/:id', getHeroById);
+router.get('/:id', getHero);
 router.post('/', createHero);
 router.put('/:id', updateHero);
 router.delete('/:id', deleteHero);

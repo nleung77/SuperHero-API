@@ -9,7 +9,7 @@ async function getAllHeroes(req, res) {
   }
 }
 
-async function getHeroById(req, res) {
+async function getHero(req, res) {
   try {
     const hero = await Hero.findById(req.params.id);
     if (!hero) {
@@ -60,7 +60,7 @@ async function deleteHero(req, res) {
 
 module.exports = {
   getAllHeroes,
-  getHeroById,
+  getHero,
   createHero,
   updateHero,
   deleteHero
