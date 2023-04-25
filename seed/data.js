@@ -5,7 +5,8 @@ const Villain = require("../models/villain");
 const fs = require("fs");
 
 const apiUrl = "https://superheroapi.com/api/10200089863473321";
-const MONGODB_URI = process.env.DB_URL || "mongodb://localhost:27017/superheroes";
+const MONGODB_URI =
+  process.env.DB_URL || "mongodb://localhost:27017/superheroes";
 
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
@@ -22,10 +23,9 @@ const getData = async (url) => {
 };
 
 const seedDatabase = async () => {
-//  const heroData = await getData(`${apiUrl}/search/a`);
+  const heroData = await getData(`${apiUrl}/search/a`);
   const villainData = await getData(`${apiUrl}/search/b`);
 
-/*
   const heroes = heroData.results.map((result) => ({
     name: result.name,
     image: result.image.url,
@@ -33,7 +33,6 @@ const seedDatabase = async () => {
     appearance: result.appearance,
     powerstats: result.powerstats,
   }));
-*/
 
   const villains = villainData.results.map((result) => ({
     name: result.name,
@@ -44,8 +43,8 @@ const seedDatabase = async () => {
   }));
 
   try {
-//    await Hero.insertMany(heroes);
-//    console.log("Heroes seeded");
+    await Hero.insertMany(heroes);
+    console.log("Heroes seeded");
     await Villain.insertMany(villains);
     console.log("Villains seeded");
   } catch (error) {
@@ -72,4 +71,3 @@ const seedDatabase = async () => {
 };
 
 seedDatabase();
-
