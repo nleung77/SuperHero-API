@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const villainSchema = new mongoose.Schema({
   name: String,
   powerstats: {
-    intelligence: Number,
-    strength: Number,
-    speed: Number,
-    durability: Number,
-    power: Number,
-    combat: Number,
+    intelligence: String,
+    strength: String,
+    speed: String,
+    durability: String,
+    power: String,
+    combat: String,
   },
   biography: {
     full_name: String,
