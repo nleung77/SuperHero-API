@@ -1,15 +1,51 @@
 const mongoose = require("mongoose");
 
 const villainSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+  name: String,
+  powerstats: {
+    intelligence: Number,
+    strength: Number,
+    speed: Number,
+    durability: Number,
+    power: Number,
+    combat: Number,
   },
-  realName: String,
-  powers: [String],
-  archEnemy: String,
-  description: String,
-  image: String,
+  biography: {
+    full_name: String,
+    alter_egos: String,
+    aliases: [String],
+    place_of_birth: String,
+    first_appearance: String,
+    publisher: String,
+    alignment: String,
+  },
+  appearance: {
+    gender: String,
+    race: String,
+    height: {
+      ft: String,
+      cm: String,
+    },
+    weight: {
+      lb: String,
+      kg: String,
+    },
+    eye_color: String,
+    hair_color: String,
+  },
+  work: {
+    occupation: String,
+    base: String,
+  },
+  connections: {
+    group_affiliation: String,
+    relatives: String,
+  },
+  image: {
+    url: String,
+  },
 });
 
-module.exports = mongoose.model("Villain", villainSchema);
+const Villain = mongoose.model("Villain", villainSchema);
+
+module.exports = Villain;
